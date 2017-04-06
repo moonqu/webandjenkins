@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<center>
+<div class="form-wrapper">
+    <form method="post" action=".">
+        {% if form.errors %}
+            {% include "users/partials/errors.html" %}
+        {% endif %}
+        {% csrf_token %}
+        {% for field in form %}
+            {{field}}
+            {% include "users/partials/field.html" %}
+        {% endfor %}
+        <div class="button-wrapper submit">
+            <input class="btn btn-primary" type="submit" value="{% trans 'Log in' %}" />
+        </div>
+        <input type="hidden" name="next" value="{{ next }}" />
+        <p><a href="{% url 'users_password_reset' %}">{% trans "Forgot password" %}</a></p>
+        <p><a href="{% url 'users_register' %}">{% trans "Register" %}</a></p>
+    </form>
+</div>
+</center>
+{% endblock %}
