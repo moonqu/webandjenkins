@@ -1,0 +1,2 @@
+# webandjenkins
+django写的一个注册登录测试jenkins用的
